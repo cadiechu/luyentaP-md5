@@ -23,14 +23,17 @@ public class CityController {
 
     @GetMapping("/getall")
     public ResponseEntity<List<City>> getCities() {
-
+        CatagoryController category = catagoryService.findById(id);
+        cataoryService.delete(catagory.getId());
+        return new ResponseEntity<>(category, HttpStatus.OK);
     }
 
     @DeleteMapping("/delete/{id}")
     public ResponseEntity<City> deleteCity(@PathVariable  Long id) {
-
+        City city = cityService.findById(id);
+        cityService.delete(city.getId());
+        return new ResponseEntity<>(city, HttpStatus.OK);
     }
-
     @PostMapping("/edit/id")
     public ResponseEntity<City> editCity(@RequestBody  CityRequestDto cityRequestDto,
                                          @PathVariable  Long id) {
