@@ -1,5 +1,7 @@
 package com.example.luyentap1412.ra.service.author;
 
+import com.example.luyentap1412.ra.model.Author;
+import com.example.luyentap1412.ra.repository.IAuthorRepo;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
@@ -7,40 +9,27 @@ import java.util.List;
 
 @Service
 @RequiredArgsConstructor
-public class AuthorService implements IAuthorService{
+public class AuthorService implements IAuthorService {
+    private final IAuthorRepo authorRepo;
 
     @Override
-    public AuthorResponseDTO addAuthor(AuthorRequestDTO authorRequestDto) {
-        return null;
+    public List<Author> findAll() {
+        return authorRepo.findAll();
     }
 
     @Override
-    public AuthorResponseDTO getAuthorById(Long id) {
-        return null;
+    public Author findById(Long id) {
+        return authorRepo.findById(id).orElse(null);
     }
 
     @Override
-    public List<AuthorResponseDTO> getAllAuthors() {
-        return null;
+    public Author save(Author author) {
+        return authorRepo.save(author);
     }
 
     @Override
-    public AuthorResponseDTO editAuthor(Long id, AuthorRequestDTO authorRequestDto) {
-        return null;
+    public void delete(Long id) {
+        authorRepo.deleteById(id);
     }
 
-    @Override
-    public AuthorResponseDTO deleteAuthorById(Long id) {
-        return null;
-    }
-
-    @Override
-    public AuthorResponseDTO addZipcodeToAuthor(Long zipcodeId, Long authorId) {
-        return null;
-    }
-
-    @Override
-    public AuthorResponseDTO removeZipcodeFromAuthor(Long id) {
-        return null;
-    }
 }

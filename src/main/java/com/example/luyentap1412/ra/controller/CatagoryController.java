@@ -13,11 +13,13 @@ public class CatagoryController {
     @PostMapping("/add")
     public ResponseEntity<CategoryResponseDto> addCategory(
             @RequestBody CategoryRequestDto categoryRequestDto) {
+        return new ResponseEntity<>(categoryService.save(category), HttpStatus.OK);
 
     }
 
     @GetMapping("/get/{id}")
     public ResponseEntity<CategoryResponseDto> getCategory(@PathVariable Long id) {
+        return new ResponseEntity<>(categoryService.findAll(), HttpStatus.OK);
 
     }
 

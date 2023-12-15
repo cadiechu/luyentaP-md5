@@ -12,16 +12,19 @@ import java.util.List;
 public class BookController {
     @PostMapping("/add")
     public ResponseEntity<BookResponseDTO> addBook(@RequestBody BookRequestDTO bookRequestDto) {
+        return new ResponseEntity<>(bookService.save(book), HttpStatus.OK);
 
     }
 
     @GetMapping("/get/{id}")
     public ResponseEntity<BookResponseDTO> getBook(@PathVariable Long id) {
+        return new ResponseEntity<>(bookService.findById(id), HttpStatus.OK);
 
     }
 
     @GetMapping("/getAll")
     public ResponseEntity<List<BookResponseDTO>> getBooks() {
+        return new ResponseEntity<>(bookService.findAll(), HttpStatus.OK);
 
     }
 
@@ -34,6 +37,8 @@ public class BookController {
     public ResponseEntity<BookResponseDTO> editBook(@RequestBody BookRequestDTO bookRequestDto,
                                                     @PathVariable Long id) {
 
+        book.setId(bookService.findById(id).getId());
+        return new ResponseEntity<>(bookService.save(book), HttpStatus.OK);
     }
 
     @PostMapping("/addCategory/{categoryId}/to/{bookId}")
