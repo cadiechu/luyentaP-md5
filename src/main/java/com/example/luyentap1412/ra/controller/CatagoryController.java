@@ -30,13 +30,16 @@ public class CatagoryController {
 
     @DeleteMapping("/delete/{id}")
     public ResponseEntity<CategoryResponseDto> deleteCategory(@PathVariable Long id) {
-
+        Category category = categoryService.findById(id);
+        categoryService.delete(category.getId());
+        return new ResponseEntity<>(category, HttpStatus.OK);
     }
 
     @PostMapping("/edit/{id}")
     public ResponseEntity<CategoryResponseDto> editCategory(
             @RequestBody CategoryRequestDto categoryRequestDto,
             @PathVariable Long id) {
-
+        category.setId(categoryService.findById(id).getId());
+        return new ResponseEntity<>(categoryService.save(category), HttpStatus.OK);
     }
 }
